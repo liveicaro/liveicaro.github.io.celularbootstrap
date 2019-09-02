@@ -1,9 +1,9 @@
 <html>
-	<head>
-		<title> -- Tela Celular -- </title>
+  <head>
+    <title> -- Tela Celular -- </title>
 
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
 
      <!-- Iconic CSS -->
@@ -37,16 +37,16 @@
       }
 
       .corpo2, .corpo3{
-        padding-top: 20px;
-        margin-top: 20px;
-        padding-bottom: 20px;
-        margin-bottom: 20px;        
+        padding-top: 10px;
+        margin-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 10px;        
         
       }
 
-      	h3, footer{
-      		text-align: center;
-      	}
+        h3, footer{
+          text-align: center;
+        }
 
         p{
 
@@ -59,17 +59,16 @@
         width: 1080px;
         height: 900px;
         }
-	      
+        
 
         .container {
-        width: 450px;
-        padding: 1em;       
+        width: 450px;             
         margin: auto;
         }
 
 
     </style>
-	</head>
+  </head>
 
   <body>
 
@@ -97,7 +96,8 @@
 
            
                <div class="relogio">
-                <div class="hora">
+                <div class="data">
+                <h3 id="data"></h3>
                 <h3 id="time"></h3>
              </div>
 
@@ -173,20 +173,46 @@
    <script> 
 
       
+      //função DATA
       var d = new Date();
-      document.getElementById("time").innerHTML = d.toDateString();
+      document.getElementById("data").innerHTML = d.toDateString();
+    
 
+      //função hora real time
+
+      function checkTime(i) {
+            if (i < 10) {
+              i = "0" + i;
+            }
+            return i;
+          }
+
+          function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            // add a zero in front of numbers<10
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
+            t = setTimeout(function() {
+              startTime()
+            }, 500);
+          }
+          startTime();
+                
 
     </script>
 
     
 
-  </body>	
+  </body> 
 
 
   <footer> <!-- rodape-->
-       <div class="container">       	
-        <div class="row justify-content-md-center">        	                       
+       <div class="container">        
+        <div class="row justify-content-md-center">                                
            
            <dir class="col-md-4">           
               
@@ -208,7 +234,7 @@
         </div>         
        </div>
      </footer> <!-- fim rodape-->
-	
+  
 
 
 </html>
